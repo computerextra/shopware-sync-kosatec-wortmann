@@ -1,0 +1,48 @@
+- Home
+- Apple
+- Komponenten
+- PC-Systeme
+- Displays
+- Home & Living
+- Hardware
+- Mobile
+- Netzwerk
+- Software
+- Used IT
+- Warehouse Deals
+
+Dynamische Gruppen:
+
+AVM (In Navigation ausgeblendet)
+
+Displays -> Monitore
+- Gaming Monitore (Gaming TFT)
+- bis 22"
+- bis 24"
+- bis 27"
+- ab 27"
+
+Komponenten -> SSDs -> Interne SSDs
+- 2,5" SSDs
+- M.2 SSDs
+
+Mobile -> Notebooks & Zubehör -> Notebooks
+- 11"
+- 13"
+- 14"
+- 15"
+- 16"
+- 17"
+
+Komponenten -> Grafikkarten -> NVidia PCI-Express Grafikkarten
+- Multimedia GPU
+- Gaming GPU
+
+Komponenten -> Arbeitsspeicher
+- DDR3
+- DDR4
+- DDR5
+- SO DDR3
+- SO DDR4
+- SO DDR5
+

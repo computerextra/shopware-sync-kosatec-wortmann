@@ -1,0 +1,439 @@
+{
+  "Aufschlag": 20,
+  "CustomAufschlag": [
+    {
+      "Kategorie": "DVI",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "HDMI",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Displayport",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "VGA",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "USB 2.0",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Sonstige Kabel",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Netzanschlusskabel",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Cat-Kabel",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Sonstige Netzwerk-Kabel",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "Audio",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "USB 3.0",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "USB C",
+      "Prozent": 500
+    },
+    {
+      "Kategorie": "HDD-/ SSD-Kabel",
+      "Prozent": 500
+    }
+  ],
+  "IgnoredCategories": [
+    "Server Barebone",
+    "Server",
+    "CSP Cloud",
+    "ESD-Lizenzen",
+    "Tinte / Toner kompatibel",
+    "Neuer Artikel",
+    "Volumenlizenzen",
+    "Awareness Training",
+    "Security-Lizenzen",
+    "Garantieerweiterungen"
+  ],
+  "IgnoredProducts": [],
+  "ManualCategories": [
+    {
+      "name": "Apple",
+      "children": []
+    },
+    {
+      "name": "Komponenten",
+      "children": [
+        {
+          "name": "Arbeitsspeicher"
+        },
+        {
+          "name": "CPUs"
+        },
+        {
+          "name": "Gehäuse"
+        },
+        {
+          "name": "Grafikkarten"
+        },
+        {
+          "name": "Festplatten"
+        },
+        {
+          "name": "Laufwerke"
+        },
+        {
+          "name": "Mainboards & Zubehör"
+        },
+        {
+          "name": "Netzteile"
+        },
+        {
+          "name": "SSDs"
+        },
+        {
+          "name": "Multimedia"
+        }
+      ]
+    },
+    {
+      "name": "PC-Systeme",
+      "children": [
+        {
+          "name": "Marken PCs"
+        },
+        {
+          "name": "Mini-PC / Barebones"
+        },
+        {
+          "name": "All in one Systeme"
+        },
+        {
+          "name": "Innovation PC Systeme"
+        },
+        {
+          "name": "PC Zubehör"
+        }
+      ]
+    },
+    {
+      "name": "Displays",
+      "children": []
+    },
+    {
+      "name": "Home & Living",
+      "children": []
+    },
+    {
+      "name": "Hardware",
+      "children": [
+        {
+          "name": "Beamer"
+        },
+        {
+          "name": "Drucker & Scanner"
+        },
+        {
+          "name": "Flash-Speicher"
+        },
+        {
+          "name": "Eingabegeräte"
+        },
+        {
+          "name": "Energie & USV"
+        },
+        {
+          "name": "Kabel & Adapter"
+        },
+        {
+          "name": "Verbrauchsmaterialien"
+        }
+      ]
+    },
+    {
+      "name": "Mobile",
+      "children": [
+        {
+          "name": "Notebooks & Zubehör"
+        },
+        {
+          "name": "Tablets & Smartphones"
+        }
+      ]
+    },
+    {
+      "name": "Networking",
+      "children": [
+        {
+          "name": "Festnetz-Telefonie"
+        },
+        {
+          "name": "Firewall"
+        }
+      ]
+    },
+    {
+      "name": "Software",
+      "children": []
+    },
+    {
+      "name": "Used IT",
+      "children": []
+    },
+    {
+      "name": "Warehouse Deals",
+      "children": []
+    }
+  ],
+  "CategoryOverride": [
+    {
+      "old": "Netzwerk",
+      "new": "Networking",
+      "index": 1
+    }
+  ],
+  "UVP": [
+    {
+      "Artikelnummer": "K122998",
+      "Brutto": 259.9,
+      "Netto": 218.4
+    },
+    {
+      "Artikelnummer": "K123005",
+      "Brutto": 259.9,
+      "Netto": 218.4
+    },
+    {
+      "Artikelnummer": "K122996",
+      "Brutto": 259.9,
+      "Netto": 218.4
+    },
+    {
+      "Artikelnummer": "K122997",
+      "Brutto": 259.9,
+      "Netto": 218.4
+    },
+    {
+      "Artikelnummer": "K122995",
+      "Brutto": 144.9,
+      "Netto": 121.76
+    },
+    {
+      "Artikelnummer": "K122993",
+      "Brutto": 144.9,
+      "Netto": 121.76
+    },
+    {
+      "Artikelnummer": "K122994",
+      "Brutto": 144.9,
+      "Netto": 121.76
+    },
+    {
+      "Artikelnummer": "K122991",
+      "Brutto": 144.9,
+      "Netto": 121.76
+    },
+    {
+      "Artikelnummer": "K123403",
+      "Brutto": 219.9,
+      "Netto": 184.03
+    },
+    {
+      "Artikelnummer": "K126228",
+      "Brutto": 289.0,
+      "Netto": 242.86
+    },
+    {
+      "Artikelnummer": "K730173",
+      "Brutto": 79.0,
+      "Netto": 66.39
+    },
+    {
+      "Artikelnummer": "K121607",
+      "Brutto": 89.0,
+      "Netto": 74.79
+    },
+    {
+      "Artikelnummer": "K110595",
+      "Brutto": 89.0,
+      "Netto": 74.79
+    },
+    {
+      "Artikelnummer": "K775435",
+      "Brutto": 59.0,
+      "Netto": 49.58
+    },
+    {
+      "Artikelnummer": "K698122",
+      "Brutto": 109.0,
+      "Netto": 91.6
+    },
+    {
+      "Artikelnummer": "K124667",
+      "Brutto": 269.0,
+      "Netto": 226.05
+    },
+    {
+      "Artikelnummer": "K116596",
+      "Brutto": 269.0,
+      "Netto": 226.05
+    },
+    {
+      "Artikelnummer": "K124636",
+      "Brutto": 329.0,
+      "Netto": 276.47
+    },
+    {
+      "Artikelnummer": "K115086",
+      "Brutto": 159.0,
+      "Netto": 133.61
+    },
+    {
+      "Artikelnummer": "K126656",
+      "Brutto": 219.0,
+      "Netto": 184.03
+    },
+    {
+      "Artikelnummer": "K103907",
+      "Brutto": 439.0,
+      "Netto": 368.91
+    },
+    {
+      "Artikelnummer": "K124377",
+      "Brutto": 119.0,
+      "Netto": 100.0
+    },
+    {
+      "Artikelnummer": "K122629",
+      "Brutto": 199.0,
+      "Netto": 167.23
+    },
+    {
+      "Artikelnummer": "K125616",
+      "Brutto": 319.0,
+      "Netto": 268.07
+    },
+    {
+      "Artikelnummer": "K132256",
+      "Brutto": 99.0,
+      "Netto": 83.19
+    },
+    {
+      "Artikelnummer": "K124378",
+      "Brutto": 95.0,
+      "Netto": 79.83
+    },
+    {
+      "Artikelnummer": "K111847",
+      "Brutto": 109.0,
+      "Netto": 91.6
+    },
+    {
+      "Artikelnummer": "K128024",
+      "Brutto": 189.0,
+      "Netto": 158.82
+    },
+    {
+      "Artikelnummer": "K110217",
+      "Brutto": 39.0,
+      "Netto": 32.77
+    },
+    {
+      "Artikelnummer": "K391769",
+      "Brutto": 39.0,
+      "Netto": 32.77
+    },
+    {
+      "Artikelnummer": "K721081",
+      "Brutto": 49.0,
+      "Netto": 41.18
+    },
+    {
+      "Artikelnummer": "K130858",
+      "Brutto": 89.0,
+      "Netto": 74.79
+    },
+    {
+      "Artikelnummer": "K102455",
+      "Brutto": 59.0,
+      "Netto": 49.58
+    },
+    {
+      "Artikelnummer": "K127148",
+      "Brutto": 69.0,
+      "Netto": 57.98
+    },
+    {
+      "Artikelnummer": "K730174",
+      "Brutto": 49.0,
+      "Netto": 41.18
+    },
+    {
+      "Artikelnummer": "K154036",
+      "Brutto": 59.0,
+      "Netto": 49.58
+    },
+    {
+      "Artikelnummer": "K126671",
+      "Brutto": 65.0,
+      "Netto": 54.62
+    },
+    {
+      "Artikelnummer": "K108301",
+      "Brutto": 89.0,
+      "Netto": 74.79
+    },
+    {
+      "Artikelnummer": "K172240",
+      "Brutto": 139.0,
+      "Netto": 116.81
+    },
+
+    {
+      "Artikelnummer": "K133573",
+      "Brutto": 169.0,
+      "Netto": 142.02
+    },
+
+    {
+      "Artikelnummer": "K165628",
+      "Brutto": 149.0,
+      "Netto": 125.21
+    },
+
+    {
+      "Artikelnummer": "K103264",
+      "Brutto": 179.0,
+      "Netto": 150.42
+    },
+
+    {
+      "Artikelnummer": "K564200",
+      "Brutto": 59.0,
+      "Netto": 49.58
+    },
+
+    {
+      "Artikelnummer": "K503329",
+      "Brutto": 99.0,
+      "Netto": 83.19
+    },
+
+    {
+      "Artikelnummer": "K134504",
+      "Brutto": 39.0,
+      "Netto": 32.77
+    }
+  ]
+}

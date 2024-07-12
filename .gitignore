@@ -1,0 +1,9 @@
+__pycache__
+content.csv
+kosatec.csv
+productcatalog.csv
+productimages.zip
+/tmp/
+
+.env
+.env.dev
