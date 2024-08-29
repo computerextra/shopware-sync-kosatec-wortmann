@@ -1,8 +1,0 @@
-SEARCH_TAX = "search/tax"
-PRODUCT = "product"
-SEARCH_PRODUCT = "search/product"
-MEDIA = "media"
-PRODUCT_MEDIA = "product-media"
-SEARCH_MEDIA_FOLDER = "search/media-folder"
-PRODUCT_MANUFACTURER = "product-manufacturer"
-SYNC = "/_action/sync"

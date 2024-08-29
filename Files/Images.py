@@ -2,37 +2,32 @@ from pathlib import Path
 import os
 from zipfile import ZipFile
 import paramiko
-from __config__ import SSH_PASS, SSH_HOST, SSH_USER, FTP_PATH
 import shutil
 
 
-def upload_wortmann_images() -> None:
+def Upload_Images(Server: str, User: str, Pass: str, UploadPath: str) -> None:
     if not Path("tmp").is_dir():
-        os.mkdir("tmp")
+        os.mkdir("")
     with ZipFile("productimages.zip", "r") as zip_file:
         zip_file.extractall("tmp")
     files = os.listdir("tmp")
-
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(policy=paramiko.AutoAddPolicy())
-    client.connect(hostname=SSH_HOST, username=SSH_USER, password=SSH_PASS)
+    client.connect(hostname=Server, username=User, password=Pass)
     sftp = client.open_sftp()
-    localPath: str = os.getcwd() + "/tmp/"
-    serverPath = FTP_PATH
+    localPath = os.getcwd() + "/tmp/"
     for file in files:
-        picturePath: str = localPath + file
-        savePath = serverPath + "/" + file
+        picturePath = localPath + file
+        savePath = UploadPath + "/" + file
         sftp.put(localpath=picturePath, remotepath=savePath)
     sftp.close()
     client.close()
     if Path("tmp").is_dir():
         shutil.rmtree("tmp")
-    return
 
 
-def delete_images_from_ftp() -> None:
+def Delete_Images(Server: str, User: str, Pass: str, UploadPath: str) -> None:
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(policy=paramiko.AutoAddPolicy())
-    client.connect(hostname=SSH_HOST, username=SSH_USER, password=SSH_PASS)
-    client.exec_command(command="rm -rf " + FTP_PATH + "/*")
-    return
+    client.connect(hostname=Server, username=User, password=Pass)
+    client.exec_command(command="rm -rf " + UploadPath + "/*")

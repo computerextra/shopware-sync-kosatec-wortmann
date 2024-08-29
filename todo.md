@@ -1,1 +1,0 @@
-- [ ] dotENV einbauen, damit die REPO Öffentlich gemacht werden kann!

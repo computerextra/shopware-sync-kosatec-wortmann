@@ -1,7 +1,6 @@
-import csv
 import codecs
-from Config.pickle_my_configs import get_config
-from __config__ import WORTMANN_KATEGORIEN_IGNORE
+import csv
+from config import Config
 
 
 class ImportArtikel:
@@ -10,21 +9,21 @@ class ImportArtikel:
         self.Bestand: str | None = None
         self.HerstellerNummer: str | None = None
         self.Name: str | None = None
-        self.ean: str | None = None
+        self.Ean: str | None = None
         self.Beschreibung: str | None = None
         self.Hersteller: str | None = None
-        self.Kategorie1: str | None = None  # Separator: |
-        self.Kategorie2: str | None = None  # Separator: |
-        self.Kategorie3: str | None = None  # Separator: |
-        self.Kategorie4: str | None = None  # Separator: |
-        self.Kategorie5: str | None = None  # Separator: |
-        self.Kategorie6: str | None = None  # Separator: |
-        self.ek: str | None = None
-        self.vk: str | None = None  # Ohne MwSt!
-        self.Bilder: str | None = None  # Separator: |
+        self.Kategorie1: str | None = None
+        self.Kategorie2: str | None = None
+        self.Kategorie3: str | None = None
+        self.Kategorie4: str | None = None
+        self.Kategorie5: str | None = None
+        self.Kategorie6: str | None = None
+        self.Ek: str | None = None
+        self.Vk: str | None = None
+        self.Bilder: str | None = None
 
 
-class CSV_Package:
+class Csv_Package:
     def __init__(self):
         self.Artikel: list[ImportArtikel] = []
         self.Hersteller: list[str] = []
@@ -130,14 +129,14 @@ class Wortmann_Content_Row:
         self.LongDescription_1043_Dutch: str | None = None
 
 
-def parse_csv_files() -> CSV_Package:
+def Parse_Csv_Files(IgnoredWortmannKategorien: list[str]) -> Csv_Package:
     Artikel: list[ImportArtikel] = []
     Hersteller: list[str] = []
-    Package = CSV_Package()
+    Package = Csv_Package()
 
-    config = get_config()
+    config = Config()
+    config.Get_Config()
 
-    # Read Kosatec File
     Kosatec_File: list[Kosatec_Row] = []
     reader = csv.reader(
         codecs.open("kosatec.csv", "r", "utf-8"), delimiter="\t", quotechar='"'
@@ -177,8 +176,7 @@ def parse_csv_files() -> CSV_Package:
         tmp.images_l = row[30]
         tmp.images_xl = row[31]
         Kosatec_File.append(tmp)
-
-    # Read Wortmann Files
+        # Read Wortmann Files
     Wortmann_Product_Catalog_File: list[Wortmann_Product_Catalog_Row] = []
     Wortmann_Content_File: list[Wortmann_Content_Row] = []
     reader = csv.reader(
@@ -264,7 +262,7 @@ def parse_csv_files() -> CSV_Package:
             and Wortmann_Row_Artikel.CategoryName_1031_German
             not in config.IgnoredCategories
             and Wortmann_Row_Artikel.ProductId not in config.IgnoredProducts
-            and Wortmann_Row_Artikel.ProductId not in WORTMANN_KATEGORIEN_IGNORE
+            and Wortmann_Row_Artikel.ProductId not in IgnoredWortmannKategorien
             and not Wortmann_Row_Artikel.Description_1031_German.startswith(
                 "TERRA CLOUD"
             )
@@ -272,11 +270,11 @@ def parse_csv_files() -> CSV_Package:
             tmp = ImportArtikel()
             tmp.Artikelnummer = "W" + Wortmann_Row_Artikel.ProductId.strip()
             tmp.Hersteller = Wortmann_Row_Artikel.Manufacturer.strip()
-            tmp.ean = (
+            tmp.Ean = (
                 Wortmann_Row_Artikel.EAN.strip() if Wortmann_Row_Artikel.EAN else ""
             )
             if Wortmann_Row_Artikel.Price_B2C_inclVAT:
-                tmp.vk = Wortmann_Row_Artikel.Price_B2C_inclVAT.strip()
+                tmp.Vk = Wortmann_Row_Artikel.Price_B2C_inclVAT.strip()
             else:
                 continue
             tmp.Bestand = (
@@ -413,11 +411,11 @@ def parse_csv_files() -> CSV_Package:
         tmp.Hersteller = Kosatec_Row_Artikel.hersteller.strip()
         Hersteller.append(Kosatec_Row_Artikel.hersteller.strip())
         if Kosatec_Row_Artikel.ean:
-            tmp.ean = Kosatec_Row_Artikel.ean.strip()
+            tmp.Ean = Kosatec_Row_Artikel.ean.strip()
         else:
-            tmp.ean = ""
+            tmp.Ean = ""
 
-        tmp.ek = Kosatec_Row_Artikel.hek.strip()
+        tmp.Ek = Kosatec_Row_Artikel.hek.strip()
         if Kosatec_Row_Artikel.menge:
             tmp.Bestand = Kosatec_Row_Artikel.menge.strip()
         else:
@@ -427,38 +425,38 @@ def parse_csv_files() -> CSV_Package:
         if config.CategoryOverride and len(config.CategoryOverride) > 0:
             for x in config.CategoryOverride:
                 tmp.Kategorie1 = (
-                    x.new
-                    if x.index == 1 and Kosatec_Row_Artikel.kat1.strip() == x.old
+                    x.New
+                    if x.Index == 1 and Kosatec_Row_Artikel.kat1.strip() == x.Old
                     else Kosatec_Row_Artikel.kat1.strip()
                 )
                 if Kosatec_Row_Artikel.kat2:
                     tmp.Kategorie2 = (
-                        x.new
-                        if x.index == 2 and Kosatec_Row_Artikel.kat2.strip() == x.old
+                        x.New
+                        if x.Index == 2 and Kosatec_Row_Artikel.kat2.strip() == x.Old
                         else Kosatec_Row_Artikel.kat2.strip()
                     )
                 if Kosatec_Row_Artikel.kat3:
                     tmp.Kategorie3 = (
-                        x.new
-                        if x.index == 3 and Kosatec_Row_Artikel.kat3.strip() == x.old
+                        x.New
+                        if x.Index == 3 and Kosatec_Row_Artikel.kat3.strip() == x.Old
                         else Kosatec_Row_Artikel.kat3.strip()
                     )
                 if Kosatec_Row_Artikel.kat4:
                     tmp.Kategorie4 = (
-                        x.new
-                        if x.index == 4 and Kosatec_Row_Artikel.kat4.strip() == x.old
+                        x.New
+                        if x.Index == 4 and Kosatec_Row_Artikel.kat4.strip() == x.Old
                         else Kosatec_Row_Artikel.kat4.strip()
                     )
                 if Kosatec_Row_Artikel.kat5:
                     tmp.Kategorie5 = (
-                        x.new
-                        if x.index == 5 and Kosatec_Row_Artikel.kat5.strip() == x.old
+                        x.New
+                        if x.Index == 5 and Kosatec_Row_Artikel.kat5.strip() == x.Old
                         else Kosatec_Row_Artikel.kat5.strip()
                     )
                 if Kosatec_Row_Artikel.kat6:
                     tmp.Kategorie6 = (
-                        x.new
-                        if x.index == 6 and Kosatec_Row_Artikel.kat6.strip() == x.old
+                        x.New
+                        if x.Index == 6 and Kosatec_Row_Artikel.kat6.strip() == x.Old
                         else Kosatec_Row_Artikel.kat6.strip()
                     )
         else:
@@ -537,10 +535,12 @@ def parse_csv_files() -> CSV_Package:
         )
         Artikel.append(tmp)
 
-    # Sortiere Hersteller
+        # Sortiere Hersteller
     Hersteller = list(set(Hersteller))
     Hersteller.append("WORTMANN AG")
 
     Package.Artikel = Artikel
     Package.Hersteller = Hersteller
+    return Package
+
     return Package

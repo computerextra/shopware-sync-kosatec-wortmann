@@ -1,4 +1,0 @@
-lib_shopware6_api_base
-paramiko
-python-pkl
-python-dotenv
