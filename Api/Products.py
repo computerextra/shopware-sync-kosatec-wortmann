@@ -211,8 +211,10 @@ def CreateProducts(Kosatec: list[ImportArtikel], Wortmann: list[ImportArtikel]) 
         print(f"Product {item.Artikelnummer}: {count} of {len(All)} will be created.")
         count += 1
         if not item.Artikelnummer:
+            print("Product has no Item Number and will be skipped.")
             continue
         if not item.Name:
+            print(f"Product: {item.Artikelnummer} has no Name and will be skipped.")
             continue
         NeuerArtikel = Shopware6NewProduct()
         NeuerArtikel.name = item.Name.strip()
