@@ -1,49 +1,37 @@
 import codecs
 import json
+import attrs
 
 
 class Uvp:
     def __init__(self):
-        self.Artikelnummer: str
-        self.Brutto: float
-        self.Netto: float
-
-    def Create(self, Artikelnummer: str, Brutto: float, Netto: float):
-        self.Artikelnummer = Artikelnummer
-        self.Brutto = Brutto
-        self.Netto = Netto
+        self.Artikelnummer: str | None = None
+        self.Brutto: float | None = None
+        self.Netto: float | None = None
 
 
 class CustomAufschlag:
     def __init__(self):
-        self.Kategorie: str
-        self.Prozent: int
-
-    def Create(self, Kategorie: str, Prozent: int):
-        self.Kategorie = Kategorie
-        self.Prozent = Prozent
+        self.Kategorie: str | None = None
+        self.Prozent: int | None = None
 
 
-class ManualCategories:
-    def __init__(self):
-        self.Name: str
-        self.Children: list[str]
+@attrs.define
+class CategoryName(object):
+    name: str | None = None
 
-    def Create(self, Name: str, Children: list[str]):
-        self.Name = Name
-        self.Children = Children
+
+@attrs.define
+class ManualCategories(object):
+    name: str | None = None
+    children: list[CategoryName] | None = None
 
 
 class CategoryOverride:
     def __init__(self):
-        self.Old: str
-        self.New: str
-        self.Index: int
-
-    def Create(self, Old: str, New: str, Index: int):
-        self.Old = Old
-        self.New = New
-        self.Index = Index
+        self.Old: str | None = None
+        self.New: str | None = None
+        self.Index: int | None = None
 
 
 class Config:
@@ -63,22 +51,27 @@ class Config:
         self.ManualCategories = []
         self.CategoryOverride = []
         for x in data["CustomAufschlag"]:
-            tmp = CustomAufschlag()
-            tmp.Create(x["Kategorie"], int(x["Prozent"]))
-            self.CustomAufschlag.append(tmp)
-
+            tmpCA = CustomAufschlag()
+            tmpCA.Kategorie = x["Kategorie"]
+            tmpCA.Prozent = int(x["Prozent"])
+            self.CustomAufschlag.append(tmpCA)
         for x in data["ManualCategories"]:
-            tmp = ManualCategories()
-            tmp.Create(x["Name"], [])
+            tmpMA = ManualCategories()
+            tmpMA.name = x["name"]
+            tmpMA.children = []
             if len(x["children"]) > 0:
                 for y in x["children"]:
-                    tmp.Children.append(y)
-            self.ManualCategories.append(tmp)
+                    z = CategoryName()
+                    z.name = y["name"]
+                    tmpMA.children.append(z)
+            self.ManualCategories.append(tmpMA)
 
         for x in data["CategoryOverride"]:
-            tmp = CategoryOverride()
-            tmp.Create(x["old"], x["new"], int(x["index"]))
-            self.CategoryOverride.append(tmp)
+            tmp2 = CategoryOverride()
+            tmp2.Old = x["old"]
+            tmp2.New = x["new"]
+            tmp2.Index = int(x["index"])
+            self.CategoryOverride.append(tmp2)
 
         self.Aufschlag = data["Aufschlag"]
         self.IgnoredCategories = data["IgnoredCategories"]
@@ -86,5 +79,7 @@ class Config:
         self.Uvp = []
         for x in data["UVP"]:
             tmp = Uvp()
-            tmp.Create(x["Artikelnummer"], float(x["Brutto"]), float(x["Netto"]))
+            tmp.Artikelnummer = x["Artikelnummer"]
+            tmp.Brutto = float(x["Brutto"])
+            tmp.Netto = float(x["Netto"])
             self.Uvp.append(tmp)

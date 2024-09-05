@@ -251,71 +251,77 @@ def Parse_Csv_Files(IgnoredWortmannKategorien: list[str]) -> Csv_Package:
 
     # Sort Wortmann Files
     for Wortmann_Row_Artikel in Wortmann_Product_Catalog_File:
+        if not Wortmann_Row_Artikel.Manufacturer:
+            continue
+        if not Wortmann_Row_Artikel.CategoryName_1031_German:
+            continue
+        if Wortmann_Row_Artikel.CategoryName_1031_German in IgnoredWortmannKategorien:
+            continue
+        if not Wortmann_Row_Artikel.ProductId:
+            continue
+        if Wortmann_Row_Artikel.Manufacturer.strip() != "WORTMANN AG":
+            continue
+        if not Wortmann_Row_Artikel.Description_1031_German:
+            continue
+        if Wortmann_Row_Artikel.Description_1031_German.startswith("TERRA CLOUD"):
+            continue
         if (
-            Wortmann_Row_Artikel.Manufacturer
-            and Wortmann_Row_Artikel.CategoryName_1031_German
-            and config.IgnoredCategories
-            and Wortmann_Row_Artikel.ProductId
-            and config.IgnoredProducts
-            and Wortmann_Row_Artikel.Description_1031_German
-            and Wortmann_Row_Artikel.Manufacturer.strip() == "WORTMANN AG"
-            and Wortmann_Row_Artikel.CategoryName_1031_German
-            not in config.IgnoredCategories
-            and Wortmann_Row_Artikel.ProductId not in config.IgnoredProducts
-            and Wortmann_Row_Artikel.ProductId not in IgnoredWortmannKategorien
-            and not Wortmann_Row_Artikel.Description_1031_German.startswith(
-                "TERRA CLOUD"
-            )
+            config.IgnoredProducts
+            and Wortmann_Row_Artikel.ProductId.strip() in config.IgnoredProducts
         ):
-            tmp = ImportArtikel()
-            tmp.Artikelnummer = "W" + Wortmann_Row_Artikel.ProductId.strip()
-            tmp.Hersteller = Wortmann_Row_Artikel.Manufacturer.strip()
-            tmp.Ean = (
-                Wortmann_Row_Artikel.EAN.strip() if Wortmann_Row_Artikel.EAN else ""
-            )
-            if Wortmann_Row_Artikel.Price_B2C_inclVAT:
-                tmp.Vk = Wortmann_Row_Artikel.Price_B2C_inclVAT.strip()
-            else:
-                continue
-            tmp.Bestand = (
-                Wortmann_Row_Artikel.Stock.strip()
-                if Wortmann_Row_Artikel.Stock
-                else "0"
-            )
-            tmp.Bilder = ""
-            if Wortmann_Row_Artikel.ImagePrimary:
-                tmp.Bilder += Wortmann_Row_Artikel.ImagePrimary.strip()
-            if (
-                Wortmann_Row_Artikel.ImageAdditional
-                and len(Wortmann_Row_Artikel.ImageAdditional) > 0
-            ):
-                tmp.Bilder += "|" + Wortmann_Row_Artikel.ImageAdditional.strip()
+            continue
+        if (
+            config.IgnoredCategories
+            and Wortmann_Row_Artikel.CategoryName_1031_German.strip()
+            in config.IgnoredCategories
+        ):
+            continue
 
-            kat = Wortmann_Row_Artikel.CategoryName_1031_German.strip()
-            tmp.Kategorie1 = kat
-            if kat == "PC":
-                tmp.Kategorie1 = "Marken PCs"
-            if kat == "LCD":
-                tmp.Kategorie1 = "Monitore"
-            if kat == "Dockingstations":
-                tmp.Kategorie1 = "Zubehör Notebooks"
-            if kat == "PC- & Netzwerkkameras":
-                tmp.Kategorie1 = "WebCams"
-            if kat == "PAD":
-                tmp.Kategorie1 = "Tablets"
-            if kat == "Taschen":
-                tmp.Kategorie1 = "Notebooktaschen"
-            if kat == "MOBILE":
-                tmp.Kategorie1 = "Notebooks"
-            if kat == "FIREWALL":
-                tmp.Kategorie1 = "Firewall"
-            if kat == "Headset & Mikro":
-                tmp.Kategorie1 = "Kopfhörer & Headsets"
-            if kat == "THINCLIENT":
-                tmp.Kategorie1 = "Mini-PC / Barebones"
-            if kat == "ALL-IN-ONE":
-                tmp.Kategorie1 = "All in One PC-Systeme"
-            Artikel.append(tmp)
+        tmp = ImportArtikel()
+        tmp.Artikelnummer = "W" + Wortmann_Row_Artikel.ProductId.strip()
+        tmp.Hersteller = Wortmann_Row_Artikel.Manufacturer.strip()
+        tmp.Ean = Wortmann_Row_Artikel.EAN.strip() if Wortmann_Row_Artikel.EAN else ""
+        if Wortmann_Row_Artikel.Price_B2C_inclVAT:
+            tmp.Vk = Wortmann_Row_Artikel.Price_B2C_inclVAT.strip()
+        else:
+            continue
+        tmp.Bestand = (
+            Wortmann_Row_Artikel.Stock.strip() if Wortmann_Row_Artikel.Stock else "0"
+        )
+        tmp.Bilder = ""
+        if Wortmann_Row_Artikel.ImagePrimary:
+            tmp.Bilder += Wortmann_Row_Artikel.ImagePrimary.strip()
+        if (
+            Wortmann_Row_Artikel.ImageAdditional
+            and len(Wortmann_Row_Artikel.ImageAdditional) > 0
+        ):
+            tmp.Bilder += "|" + Wortmann_Row_Artikel.ImageAdditional.strip()
+
+        kat = Wortmann_Row_Artikel.CategoryName_1031_German.strip()
+        tmp.Kategorie1 = kat
+        if kat == "PC":
+            tmp.Kategorie1 = "Marken PCs"
+        if kat == "LCD":
+            tmp.Kategorie1 = "Monitore"
+        if kat == "Dockingstations":
+            tmp.Kategorie1 = "Zubehör Notebooks"
+        if kat == "PC- & Netzwerkkameras":
+            tmp.Kategorie1 = "WebCams"
+        if kat == "PAD":
+            tmp.Kategorie1 = "Tablets"
+        if kat == "Taschen":
+            tmp.Kategorie1 = "Notebooktaschen"
+        if kat == "MOBILE":
+            tmp.Kategorie1 = "Notebooks"
+        if kat == "FIREWALL":
+            tmp.Kategorie1 = "Firewall"
+        if kat == "Headset & Mikro":
+            tmp.Kategorie1 = "Kopfhörer & Headsets"
+        if kat == "THINCLIENT":
+            tmp.Kategorie1 = "Mini-PC / Barebones"
+        if kat == "ALL-IN-ONE":
+            tmp.Kategorie1 = "All in One PC-Systeme"
+        Artikel.append(tmp)
 
     for Wortmann_Row_Artikel in Wortmann_Content_File:
         tmp = ImportArtikel()
@@ -541,6 +547,4 @@ def Parse_Csv_Files(IgnoredWortmannKategorien: list[str]) -> Csv_Package:
 
     Package.Artikel = Artikel
     Package.Hersteller = Hersteller
-    return Package
-
     return Package

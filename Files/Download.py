@@ -2,19 +2,31 @@ import os
 import urllib.request
 import ftplib
 
+from env import Env
+
+
+def Download() -> None:
+    env = Env()
+    __download_Kosatec(env.KOSATEC_URL)
+    __download_Wortmann(
+        env.WORTMANN_FTP_SERVER,
+        env.WORTMANN_FTP_SERVER_USER,
+        env.WORTMANN_FTP_SERVER_PASSWORD,
+    )
+
 
 def __delete_file(path: str) -> None:
     if os.path.isfile(path):
         os.remove(path)
 
 
-def Download_Kosatec(url: str):
+def __download_Kosatec(url: str):
     file = "kosatec.csv"
     __delete_file(file)
     urllib.request.urlretrieve(url, file)
 
 
-def Download_Wortmann(Server: str, User: str, Pass: str):
+def __download_Wortmann(Server: str, User: str, Pass: str):
     ftp = ftplib.FTP(Server)
     ftp.login(User, Pass)
     content = "content.csv"

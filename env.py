@@ -125,16 +125,3 @@ class Env:
         self.FTP_PATH = FTP_PATH
         self.FTP_SHOP_PATH = FTP_SHOP_PATH
         self.CDN_PICTURE_PATH = CDN_PICTURE_PATH
-
-    def GetKosatecUrl(self) -> str:
-        return self.KOSATEC_URL
-
-    def GetWortmannLogin(self) -> WortmannLogin:
-        return WortmannLogin(
-            self.WORTMANN_FTP_SERVER,
-            self.WORTMANN_FTP_SERVER_USER,
-            self.WORTMANN_FTP_SERVER_PASSWORD,
-        )
-
-    def GetFTPPath(self) -> str:
-        return self.FTP_PATH
